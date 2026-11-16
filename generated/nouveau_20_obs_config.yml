@@ -1,0 +1,153 @@
+obs_size:
+- Columns: 55
+  Rows: 101
+init_obs_set_item:
+- Column: 0
+  Row: 0
+- Column: 35
+  Row: 0
+obs_wrapper_size:
+- Columns: 2
+  Rows: 21
+init_obs_wrapper_set_item:
+- Column: 0
+  Row: 0
+- Column: 0
+  Row: 17
+obs_to_obs_wrapper_map:
+  wrapper_obs_row:
+  - wrapper_obs_row_index: 0
+    section: 0
+    obs:
+    - column: 0
+      value: 1
+    - column: 42
+      value: 0
+    - column: 43
+      value: 0
+  - wrapper_obs_row_index: 1
+    section: 0
+    obs:
+    - column: 0
+      value: 1
+    - column: 42
+      value: 1
+    - column: 43
+      value: 0
+  - wrapper_obs_row_index: 2
+    section: 0
+    obs:
+    - column: 0
+      value: 1
+    - column: 42
+      value: 0
+    - column: 43
+      value: 1
+  - wrapper_obs_row_index: 3
+    section: 0
+    obs:
+    - column: 0
+      value: 1
+    - column: 42
+      value: 1
+    - column: 43
+      value: 1
+  - wrapper_obs_row_index: 4
+    section: 0
+    obs:
+    - column: 45
+      value: 1
+  - wrapper_obs_row_index: 5
+    section: 0
+    obs:
+    - column: 38
+      value: 1
+  - wrapper_obs_row_index: 6
+    section: 0
+    obs:
+    - column: 2
+      value: 1
+    - column: 3
+      value: 1
+  - wrapper_obs_row_index: 7
+    section: 0
+    obs:
+    - column: 1
+      value: 1
+  - wrapper_obs_row_index: 8
+    section: 0
+    obs:
+    - column: 44
+      value: 1
+  - wrapper_obs_row_index: 9
+    section: 1
+    obs:
+    - column: 0
+      value: 1
+  - wrapper_obs_row_index: 10
+    section: 0
+    obs:
+    - column: 39
+      value: 1
+    - column: 41
+      value: 1
+  - wrapper_obs_row_index: 11
+    section: 0
+    obs:
+    - column: 39
+      value: 1
+    - column: 41
+      value: 1
+  - wrapper_obs_row_index: 12
+    section: 1
+    obs:
+    - column: 1
+      value: 1
+    - column: 2
+      value: 1
+  - wrapper_obs_row_index: 13
+    section: 1
+    obs:
+    - column: 1
+      value: 1
+    - column: 3
+      value: 1
+  - wrapper_obs_row_index: 14
+    section: 1
+    obs:
+    - column: 4
+      value: 1
+  - wrapper_obs_row_index: 15
+    section: -1
+    obs:
+    - column: 4
+      value: 1
+  - wrapper_obs_row_index: 16
+    section: 0
+    obs:
+    - column: 0
+      value: 1
+    - column: 36
+      value: 1
+  - wrapper_obs_row_index: 17
+    section: 0
+    obs:
+    - column: 0
+      value: 1
+    - column: 35
+      value: 1
+  - wrapper_obs_row_index: 18
+    section: 0
+    obs:
+    - column: 50
+      value: 1
+  - wrapper_obs_row_index: 19
+    section: 0
+    obs:
+    - column: 51
+      value: 1
+  - wrapper_obs_row_index: 20
+    section: 0
+    obs:
+    - column: 53
+      value: 1

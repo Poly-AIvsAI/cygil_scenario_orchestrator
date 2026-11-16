@@ -1,0 +1,606 @@
+metadata:
+  name: nouveau_20
+  description: Démonstrateur construit depuis un canevas vide pour le rapport final
+  version: '1.0'
+vmware:
+  host_type: windows
+  external_ip: 192.168.10.1
+  ssh_user: ''
+  ssh_private_key_path: ''
+  ssh_authorized_public_key_path: null
+  workstation_directory: C:\Program Files (x86)\VMware\VMware Workstation
+  api_port: 8697
+  api_username_secret: VMWARE_API_USERNAME
+  api_password_secret: VMWARE_API_PASSWORD
+  snapshot_name: nouveau_20_ready
+  caldera_reset_interval: 100
+  openssl_executable: C:\Program Files (x86)\VMware\VMware Workstation\openssl.exe
+  openssl_config_path: C:\Project\CyGIL2.0\openssl.cnf
+  certificate_directory: work/host-certificates
+  vmrest_bind_address: 0.0.0.0
+  vmrest_firewall_rule_name: CyGIL-vmrest
+  sshd_config_path: C:\ProgramData\ssh\sshd_config
+  allow_legacy_ssh_rsa: false
+  static_mac_workstation_version: 17.5.2 build-23775571
+  static_mac_first: 00:50:56:00:00:00
+  static_mac_last: 00:50:56:3F:FF:FF
+  static_mac_validation_source: Broadcom KB 507 — VMware Workstation 17.5.2
+  static_mac_policy_validated: true
+  setup_status:
+    state: not_configured
+    ssh_configured: false
+    certificate_generated: false
+    credentials_configured: false
+    vmrest_running: false
+    vmrest_process_ids: []
+    vmrest_http_status: null
+    certificate_path: null
+    private_key_path: null
+    last_message: Aucune configuration exécutée
+    last_checked_at: null
+vagrant:
+  enabled: true
+  executable_path: null
+  clone_directory: null
+  workspace_directory: work/vagrant
+  box_paths: {}
+  reserved_management_addresses: []
+  management_gateway: null
+  bootstrap_method: null
+  bootstrap_network: VMnet19
+  bootstrap_dhcp_enabled: true
+  bootstrap_validated: true
+  guest_network_commands_validated: false
+  mininet_internal_network: VMnet1
+  mininet_internal_cidr: 192.170.20.0/24
+networks:
+- id: lan1
+  subnet_label: 10.0.0.0
+  cidr: 10.0.0.0/24
+  gateway: null
+  vmware_network: null
+- id: lan2
+  subnet_label: 10.0.1.0
+  cidr: 10.0.1.0/24
+  gateway: null
+  vmware_network: null
+- id: lan3
+  subnet_label: 10.0.3.0
+  cidr: 10.0.3.0/24
+  gateway: null
+  vmware_network: null
+switches:
+- name: s1
+  mininet_instance: mininet_onos
+- name: s2
+  mininet_instance: mininet_2
+- name: s3
+  mininet_instance: mininet_2
+infrastructure:
+- id: CyGIL-Server-VM
+  role: cygil
+  vmware_id: AS8M7845A7GQ4A416DFTHF3T8H3H918J
+  vmware_uuid: null
+  inventory_confirmed: true
+  management_ip_confirmed: false
+  vmx_path: C:\Project\CyGIL2.0\CyGIL-Server-VM\CyGIL-Server-VM.vmx
+  management_ip: null
+  internal_ip: null
+  mac: null
+  interface_name: null
+  mininet_instance: null
+  connected_switch: null
+  subnet_label: null
+  scenario_ip: null
+  interfaces:
+  - name: eth0
+    address: 192.168.10.3/24
+    purpose: management
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  os_family: null
+  guest_access: null
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  observed_adapters: []
+  expected_adapters: []
+  network_reconstruction_state: not_planned
+  ssh_user: null
+  ssh_password_secret: null
+  api_username_secret: null
+  api_password_secret: null
+  red_api_key_secret: null
+  blue_api_key_secret: null
+- id: 5-Caldera-Server-VM
+  role: caldera
+  vmware_id: 6I2G73KFHR1AU4JQQNHB125I3AOHR6MT
+  vmware_uuid: null
+  inventory_confirmed: true
+  management_ip_confirmed: false
+  vmx_path: C:\Project\CyGIL2.0\5-Caldera-Server-VM\5-Caldera-Server-VM.vmx
+  management_ip: null
+  internal_ip: null
+  mac: null
+  interface_name: null
+  mininet_instance: null
+  connected_switch: null
+  subnet_label: null
+  scenario_ip: null
+  interfaces:
+  - name: eth0
+    address: 192.168.10.5/24
+    purpose: management
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  - name: ''
+    address: 10.0.0.4/24
+    purpose: scenario
+    network: lan1
+    mininet_instance: mininet_onos
+    connected_switch: s1
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: VMnet7
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  os_family: null
+  guest_access: null
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  observed_adapters: []
+  expected_adapters: []
+  network_reconstruction_state: not_planned
+  ssh_user: null
+  ssh_password_secret: null
+  api_username_secret: null
+  api_password_secret: null
+  red_api_key_secret: null
+  blue_api_key_secret: null
+- id: Mininet-and-Onos-VM
+  role: onos
+  vmware_id: 6PBRH9L96T0ETNLRMNJ79C0MOUJJL3P7
+  vmware_uuid: null
+  inventory_confirmed: true
+  management_ip_confirmed: false
+  vmx_path: C:\Project\CyGIL2.0\Mininet-and-Onos-VM\Mininet-and-Onos-VM.vmx
+  management_ip: null
+  internal_ip: null
+  mac: null
+  interface_name: null
+  mininet_instance: mininet_onos
+  connected_switch: null
+  subnet_label: null
+  scenario_ip: null
+  interfaces:
+  - name: eth0
+    address: 192.168.10.4/24
+    purpose: management
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  os_family: null
+  guest_access: null
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  observed_adapters: []
+  expected_adapters: []
+  network_reconstruction_state: not_planned
+  ssh_user: null
+  ssh_password_secret: null
+  api_username_secret: null
+  api_password_secret: null
+  red_api_key_secret: null
+  blue_api_key_secret: null
+- id: Mininet-VM-Two
+  role: mininet
+  vmware_id: V9HDQDL878GK8EUIVQMD4SG0KICLR260
+  vmware_uuid: null
+  inventory_confirmed: true
+  management_ip_confirmed: false
+  vmx_path: C:\Project\CyGIL2.0\Mininet-VM-Two\Mininet-VM-Two.vmx
+  management_ip: null
+  internal_ip: null
+  mac: null
+  interface_name: null
+  mininet_instance: mininet_2
+  connected_switch: null
+  subnet_label: null
+  scenario_ip: null
+  interfaces:
+  - name: eth0
+    address: 192.168.10.6/24
+    purpose: management
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  os_family: null
+  guest_access: null
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  observed_adapters: []
+  expected_adapters: []
+  network_reconstruction_state: not_planned
+  ssh_user: null
+  ssh_password_secret: null
+  api_username_secret: null
+  api_password_secret: null
+  red_api_key_secret: null
+  blue_api_key_secret: null
+targets:
+- id: UH1
+  hostname: target-1
+  os_family: linux
+  template: à_configurer
+  cpus: 2
+  memory_mb: 4048
+  vmx_path: null
+  interfaces:
+  - name: eth0
+    address: 10.0.0.2/24
+    purpose: scenario
+    network: lan1
+    mininet_instance: mininet_onos
+    connected_switch: s1
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: VMnet2
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet19
+    address_mode: dhcp
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access:
+    communicator: ssh
+    connection_address: null
+    username: null
+    password_secret: null
+    private_key_path: null
+    port: null
+    winrm_use_ssl: false
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  compromised: true
+  hand:
+    enabled: true
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: true
+  caldera_vmware_network: VMnet7
+  critical_reset: true
+  snapshot: true
+  target_file_source_path: null
+  target_file_path: null
+  target_file_worth: 100
+- id: UH3
+  hostname: target-3
+  os_family: linux
+  template: à_configurer
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: eth0
+    address: 10.0.1.2/24
+    purpose: scenario
+    network: lan2
+    mininet_instance: mininet_2
+    connected_switch: s2
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: VMnet3
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet19
+    address_mode: dhcp
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  compromised: false
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  caldera_vmware_network: null
+  critical_reset: true
+  snapshot: true
+  target_file_source_path: null
+  target_file_path: null
+  target_file_worth: 100
+- id: WAD
+  hostname: target-5
+  os_family: windows
+  template: à_configurer
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: eth0
+    address: 10.0.3.2/24
+    purpose: scenario
+    network: lan3
+    mininet_instance: mininet_2
+    connected_switch: s3
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: VMnet4
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet19
+    address_mode: dhcp
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  compromised: false
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  caldera_vmware_network: null
+  critical_reset: true
+  snapshot: true
+  target_file_source_path: null
+  target_file_path: null
+  target_file_worth: 100
+- id: WH2
+  hostname: target-4
+  os_family: windows
+  template: à_configurer
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: eth0
+    address: 10.0.0.3
+    purpose: scenario
+    network: lan1
+    mininet_instance: mininet_onos
+    connected_switch: s1
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: VMnet5
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet19
+    address_mode: dhcp
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  compromised: false
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  caldera_vmware_network: null
+  critical_reset: true
+  snapshot: true
+  target_file_source_path: null
+  target_file_path: null
+  target_file_worth: 100
+- id: WH4
+  hostname: target-5
+  os_family: windows
+  template: à_configurer
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: eth0
+    address: 10.0.1.3
+    purpose: scenario
+    network: lan2
+    mininet_instance: mininet_2
+    connected_switch: s2
+    scope: local
+    mac: null
+    applied_mac: null
+    mac_source: null
+    mac_verified: false
+    vmware_network: VMnet6
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet19
+    address_mode: dhcp
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  network_backend: null
+  guest_desktop:
+    session_user: null
+    terminal_executable: null
+    linux_display: null
+    visible_terminal_validated: false
+  isolation_interfaces: []
+  guest_files: []
+  compromised: false
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  caldera_vmware_network: null
+  critical_reset: true
+  snapshot: true
+  target_file_source_path: null
+  target_file_path: null
+  target_file_worth: 100
+mininet_instances:
+- name: mininet_onos
+  infrastructure_vm_id: Mininet-and-Onos-VM
+  onos_controller_id: Mininet-and-Onos-VM
+  external_ip: null
+  internal_ip: null
+  switch_links:
+    s1:
+    - s2
+- name: mininet_2
+  infrastructure_vm_id: Mininet-VM-Two
+  onos_controller_id: Mininet-and-Onos-VM
+  external_ip: null
+  internal_ip: null
+  switch_links:
+    s2:
+    - s3
+onos_intents: []
+command_center:
+  provider: caldera_three
+  abilities: []
+  initial_facts: []
+  rules: []
+reward:
+  action_cost: 1
+  no_action_dispatched_cost: 8
+  max_steps: 80
+  objectives: []
+  raw_config: {}
+observation:
+  profile_path: profiles/obs_standard.yml
+cygil_runtime:
+  destination_directory: /opt/cygil/scenarios/nouveau_20
+  launch_commands: []
+lab_control:
+  visible_terminals_required: true
+  explicit_bench_confirmation: true
+  verify_air_gap: true
+  snapshot_with_memory: null

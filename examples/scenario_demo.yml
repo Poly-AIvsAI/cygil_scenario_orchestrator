@@ -1,0 +1,218 @@
+metadata:
+  name: simulation_three_targets
+  description: Simulation non productive de compilation CyGIL avec trois cibles
+  version: '1.0'
+vmware:
+  host_type: windows
+  external_ip: 192.168.10.10
+  ssh_user: lab-operator
+  ssh_private_key_path: C:\Users\lab-operator\.ssh\id_ed25519
+  workstation_directory: C:\Program Files (x86)\VMware\VMware Workstation
+  api_port: 8697
+  api_username_secret: VMWARE_API_USERNAME
+  api_password_secret: VMWARE_API_PASSWORD
+  snapshot_name: scenario_demo_ready
+  caldera_reset_interval: 100
+networks:
+  - id: users
+    cidr: 10.10.1.0/24
+    gateway: 10.10.1.1
+    mininet_instance: mininet_primary
+    switch: s1
+  - id: servers
+    cidr: 10.10.2.0/24
+    gateway: 10.10.2.1
+    mininet_instance: mininet_primary
+    switch: s2
+infrastructure:
+  - id: cygil
+    role: cygil
+    vmx_path: C:\Lab\CyGIL\CyGIL.vmx
+    management_ip: 192.168.10.20
+    ssh_user: cygil
+    ssh_password_secret: CYGIL_SSH_PASSWORD
+    interfaces:
+      - name: Ethernet0
+        address: 192.168.10.20/24
+        purpose: management
+      - name: Ethernet1
+        address: 10.10.1.8/24
+        purpose: scenario
+        network: users
+        mininet_instance: mininet_primary
+        connected_switch: s1
+  - id: caldera
+    role: caldera
+    vmx_path: C:\Lab\CALDERA\CALDERA.vmx
+    management_ip: 192.168.10.21
+    internal_ip: 10.10.1.5
+    scenario_ip: 10.10.1.5
+    mac: 00:50:56:AA:00:21
+    interface_name: ens33
+    mininet_instance: mininet_primary
+    connected_switch: s1
+    subnet_label: 10.10.1.0
+    ssh_user: caldera
+    ssh_password_secret: CALDERA_SSH_PASSWORD
+    interfaces:
+      - name: ens32
+        address: 192.168.10.21/24
+        purpose: management
+      - name: ens33
+        address: 10.10.1.5/24
+        purpose: scenario
+        network: users
+        mininet_instance: mininet_primary
+        connected_switch: s1
+    api_username_secret: CALDERA_API_USERNAME
+    api_password_secret: CALDERA_API_PASSWORD
+    red_api_key_secret: CALDERA_RED_API_KEY
+    blue_api_key_secret: CALDERA_BLUE_API_KEY
+  - id: onos
+    role: onos
+    vmx_path: C:\Lab\ONOS\ONOS.vmx
+    management_ip: 192.168.10.22
+    internal_ip: 10.10.1.6
+    api_username_secret: ONOS_USERNAME
+    api_password_secret: ONOS_PASSWORD
+    interfaces:
+      - name: ens32
+        address: 192.168.10.22/24
+        purpose: management
+      - name: ens33
+        address: 10.10.1.6/24
+        purpose: scenario
+        network: users
+        mininet_instance: mininet_primary
+        connected_switch: s1
+  - id: mininet
+    role: mininet
+    vmx_path: C:\Lab\Mininet\Mininet.vmx
+    management_ip: 192.168.10.23
+    internal_ip: 10.10.1.7
+    interfaces:
+      - name: ens32
+        address: 192.168.10.23/24
+        purpose: management
+      - name: ens33
+        address: 10.10.1.7/24
+        purpose: scenario
+        network: users
+        mininet_instance: mininet_primary
+        connected_switch: s1
+mininet_instances:
+  - name: mininet_primary
+    infrastructure_vm_id: mininet
+    onos_controller_id: onos
+    external_ip: 192.168.10.23
+    internal_ip: 10.10.1.7
+    switch_links:
+      s1: [s2]
+targets:
+  - id: workstation_01
+    hostname: workstation-01
+    os_family: windows
+    template: cygil/windows-10
+    cpus: 2
+    memory_mb: 4096
+    vmx_path: C:\Lab\Scenarios\scenario_demo\workstation_01.vmx
+    compromised: true
+    hand:
+      enabled: true
+      agent_type: sandcat
+      group: red
+      c2_protocol: http
+    initial_red_hand: true
+    caldera_vmware_network: null
+    critical_reset: true
+    snapshot: true
+    interfaces:
+      - name: Ethernet0
+        purpose: scenario
+        network: users
+        address: 10.10.1.20/24
+        mac: 00:50:56:10:00:20
+        mininet_instance: mininet_primary
+        connected_switch: s1
+        scope: local
+  - id: server_01
+    hostname: server-01
+    os_family: linux
+    template: cygil/ubuntu-22.04
+    cpus: 2
+    memory_mb: 2048
+    vmx_path: C:\Lab\Scenarios\scenario_demo\server_01.vmx
+    hand:
+      enabled: false
+      agent_type: sandcat
+      group: red
+      c2_protocol: http
+    target_file_path: /home/lab/target/secret.txt
+    target_file_worth: 100
+    initial_red_hand: false
+    critical_reset: true
+    snapshot: true
+    interfaces:
+      - name: ens33
+        purpose: scenario
+        network: servers
+        address: 10.10.2.20/24
+        mac: 00:50:56:10:00:21
+        mininet_instance: mininet_primary
+        connected_switch: s2
+        scope: local
+  - id: workstation_02
+    hostname: workstation-02
+    os_family: linux
+    template: cygil/ubuntu-22.04
+    cpus: 2
+    memory_mb: 2048
+    vmx_path: C:\Lab\Scenarios\simulation_three_targets\workstation_02.vmx
+    hand:
+      enabled: false
+      agent_type: sandcat
+      group: red
+      c2_protocol: http
+    initial_red_hand: false
+    critical_reset: false
+    snapshot: true
+    interfaces:
+      - name: ens33
+        purpose: scenario
+        network: users
+        address: 10.10.1.21/24
+        mac: 00:50:56:10:00:22
+        mininet_instance: mininet_primary
+        connected_switch: s1
+        scope: local
+onos_intents:
+  - host_one: workstation_01
+    host_two: server_01
+  - host_one: workstation_02
+    host_two: server_01
+command_center:
+  provider: caldera_three
+  abilities:
+    - action_id: 0
+      ability_id: 90c2efaa-8205-480d-8bb6-61d90dbaf81b
+      description: Action CALDERA de démonstration à confirmer
+  initial_facts: []
+  rules: []
+reward:
+  action_cost: 1
+  no_action_dispatched_cost: 8
+  max_steps: 80
+  objectives:
+    - type: hand_on_host
+      enabled: true
+      worth: 100
+      host_name: server_01
+      privilege: root
+      count: 1
+      operator: ==
+      source: manual
+observation:
+  profile_path: profiles/obs_standard.yml
+cygil_runtime:
+  destination_directory: /opt/cygil/scenarios/simulation_three_targets
+  launch_commands: []

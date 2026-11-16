@@ -1,0 +1,23 @@
+{
+  "scenario": "nouveau_20",
+  "version": "1.0",
+  "generated_at_utc": "2026-11-16T04:06:52.430074+00:00",
+  "secrets_injected": false,
+  "vmware_macs_verified": false,
+  "files_sha256": {
+    "nouveau_20_network_config.yml": "dfcd474f107e4bec680ce503a4b1d43eb545e192a48e00e94d33728e977859dd",
+    "nouveau_20_command_center_config.yml": "d62ffd2840caca55b42513002046a01f9a7d75b74d02ef1d00b6b22630a49fbe",
+    "nouveau_20_reward_config.yml": "f5d4ee936d29682b6666d6d024d0183017ae872265578f07eacbd3be8aacc584",
+    "nouveau_20_obs_config.yml": "39986cad60abbcc21a8050e57c48bab08341d5c1271d61776fdec75e56fa3b33"
+  },
+  "warnings": [
+    "Aucun fichier .box choisi pour Ubuntu",
+    "Aucun fichier .box choisi pour Windows",
+    "Réseaux permanents à confirmer pour Mininet-and-Onos-VM : ['VMnet2', 'VMnet5', 'VMnet7']",
+    "Réseaux permanents à confirmer pour Mininet-VM-Two : ['VMnet3', 'VMnet4', 'VMnet6']",
+    "Le hand de UH1 est activé mais sa commande n'est pas encore générée",
+    "Le nom invité de l'interface CALDERA sera requis après sa découverte par MAC",
+    "Confirmez si les snapshots doivent inclure la mémoire; vmrun 1.17 ne fournit pas cette option",
+    "Aucune commande CyGIL n'est encore configurée"
+  ]
+}

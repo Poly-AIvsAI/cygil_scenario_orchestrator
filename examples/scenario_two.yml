@@ -1,0 +1,792 @@
+metadata:
+  name: scenario_two
+  description: Scénario 2 CyGIL à deux instances Mininet et neuf VM cibles
+  version: '1.0'
+vmware:
+  host_type: windows
+  external_ip: 192.168.10.3
+  ssh_user: jpelrami
+  ssh_private_key_path: /home/cygil/.ssh/id_rsa
+  ssh_authorized_public_key_path: null
+  workstation_directory: C:\Program Files (x86)\VMware\VMware Workstation
+  api_port: 8697
+  api_username_secret: VMWARE_API_USERNAME
+  api_password_secret: VMWARE_API_PASSWORD
+  snapshot_name: Scenario-2
+  caldera_reset_interval: 100
+  openssl_executable: C:\Program Files (x86)\VMware\VMware Workstation\openssl.exe
+  openssl_config_path: C:\Project\CyGIL2.0\openssl.cnf
+  certificate_directory: work/host-certificates
+  vmrest_bind_address: 0.0.0.0
+  vmrest_firewall_rule_name: CyGIL-vmrest
+  sshd_config_path: C:\ProgramData\ssh\sshd_config
+  allow_legacy_ssh_rsa: false
+  setup_status:
+    state: not_configured
+    ssh_configured: false
+    certificate_generated: false
+    credentials_configured: false
+    vmrest_running: false
+    vmrest_process_ids: []
+    vmrest_http_status: null
+    certificate_path: null
+    private_key_path: null
+    last_message: Aucune configuration exécutée
+    last_checked_at: null
+vagrant:
+  enabled: true
+  executable_path: null
+  clone_directory: null
+  workspace_directory: work/vagrant
+  box_paths: {}
+  reserved_management_addresses: []
+  management_gateway: null
+  bootstrap_method: null
+  bootstrap_validated: false
+  guest_network_commands_validated: false
+networks:
+- id: subnet_1
+  subnet_label: 10.0.1.0
+  cidr: null
+  gateway: null
+- id: subnet_2
+  subnet_label: 10.0.2.0
+  cidr: null
+  gateway: null
+- id: subnet_3
+  subnet_label: 10.0.3.0
+  cidr: null
+  gateway: null
+- id: subnet_4
+  subnet_label: 10.0.4.0
+  cidr: null
+  gateway: null
+switches:
+- name: s1
+  mininet_instance: Mininet-and-Onos-VM
+- name: s2
+  mininet_instance: Mininet-and-Onos-VM
+- name: s3
+  mininet_instance: Mininet-VM-Two
+- name: s4
+  mininet_instance: Mininet-VM-Two
+infrastructure:
+- id: cygil
+  role: cygil
+  vmware_id: null
+  vmware_uuid: null
+  inventory_confirmed: false
+  management_ip_confirmed: false
+  vmx_path: C:\Users\jpelrami\Documents\Virtual Machines\CyGIL2.0\CyGIL\CyGIL.vmx
+  management_ip: 192.168.10.7
+  internal_ip: null
+  mac: null
+  interface_name: null
+  mininet_instance: null
+  connected_switch: null
+  subnet_label: null
+  scenario_ip: null
+  interfaces:
+  - name: ens32
+    address: 192.168.10.7/24
+    purpose: management
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  - name: ens33
+    address: 192.170.20.3/24
+    purpose: other
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  ssh_user: cygil
+  ssh_password_secret: CYGIL_SSH_PASSWORD
+  api_username_secret: null
+  api_password_secret: null
+  red_api_key_secret: null
+  blue_api_key_secret: null
+- id: 5-Caldera-Server-VM
+  role: caldera
+  vmware_id: null
+  vmware_uuid: null
+  inventory_confirmed: false
+  management_ip_confirmed: false
+  vmx_path: C:\Users\jpelrami\Documents\Virtual Machines\CyGIL2.0\5-Caldera-Server-VM\5-Caldera-Server-VM.vmx
+  management_ip: 192.168.10.4
+  internal_ip: 10.0.0.5
+  mac: 00:00:00:00:00:05
+  interface_name: ens40
+  mininet_instance: Mininet-and-Onos-VM
+  connected_switch: s1
+  subnet_label: 10.0.1.0
+  scenario_ip: 10.0.0.5
+  interfaces:
+  - name: ens32
+    address: 192.168.10.4/24
+    purpose: management
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  - name: ens40
+    address: 10.0.0.5/8
+    purpose: scenario
+    network: subnet_1
+    mininet_instance: Mininet-and-Onos-VM
+    connected_switch: s1
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  ssh_user: cat-group
+  ssh_password_secret: CALDERA_SSH_PASSWORD
+  api_username_secret: null
+  api_password_secret: null
+  red_api_key_secret: CALDERA_RED_API_KEY
+  blue_api_key_secret: CALDERA_BLUE_API_KEY
+- id: Mininet-and-Onos-VM
+  role: onos
+  vmware_id: null
+  vmware_uuid: null
+  inventory_confirmed: false
+  management_ip_confirmed: false
+  vmx_path: C:\Users\jpelrami\Documents\Virtual Machines\CyGIL2.0\Mininet-and-Onos-VM\Mininet-and-Onos-VM.vmx
+  management_ip: 192.168.10.5
+  internal_ip: 192.170.20.1
+  mac: null
+  interface_name: null
+  mininet_instance: null
+  connected_switch: null
+  subnet_label: null
+  scenario_ip: null
+  interfaces:
+  - name: ens32
+    address: 192.168.10.5/24
+    purpose: management
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  - name: ens33
+    address: 192.170.20.1/24
+    purpose: other
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  ssh_user: null
+  ssh_password_secret: null
+  api_username_secret: null
+  api_password_secret: null
+  red_api_key_secret: null
+  blue_api_key_secret: null
+- id: Mininet-VM-Two
+  role: mininet
+  vmware_id: null
+  vmware_uuid: null
+  inventory_confirmed: false
+  management_ip_confirmed: false
+  vmx_path: C:\Users\jpelrami\Documents\Virtual Machines\CyGIL2.0\Mininet-VM-Two\Mininet-VM-Two.vmx
+  management_ip: 192.168.10.6
+  internal_ip: 192.170.20.2
+  mac: null
+  interface_name: null
+  mininet_instance: Mininet-VM-Two
+  connected_switch: null
+  subnet_label: null
+  scenario_ip: null
+  interfaces:
+  - name: ens32
+    address: 192.168.10.6/24
+    purpose: management
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  - name: ens33
+    address: 192.170.20.2/24
+    purpose: other
+    network: null
+    mininet_instance: null
+    connected_switch: null
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  ssh_user: null
+  ssh_password_secret: null
+  api_username_secret: null
+  api_password_secret: null
+  red_api_key_secret: null
+  blue_api_key_secret: null
+targets:
+- id: 2-WINDOWS
+  hostname: 2-WINDOWS
+  os_family: windows
+  template: cygil/windows
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: C:\Users\jpelrami\Documents\Virtual Machines\CyGIL2.0\2-WINDOWS\2-WINDOWS.vmx
+  interfaces:
+  - name: ens42
+    address: 10.0.0.2/8
+    purpose: scenario
+    network: subnet_1
+    mininet_instance: Mininet-and-Onos-VM
+    connected_switch: s1
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  compromised: true
+  hand:
+    enabled: true
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: true
+  caldera_vmware_network: null
+  critical_reset: true
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+- id: 1-UBUNTU
+  hostname: 1-UBUNTU
+  os_family: linux
+  template: cygil/ubuntu
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: ens38
+    address: 10.0.0.1/8
+    purpose: scenario
+    network: subnet_1
+    mininet_instance: Mininet-and-Onos-VM
+    connected_switch: s1
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  critical_reset: false
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+- id: 4-WINDOWS
+  hostname: 4-WINDOWS
+  os_family: windows
+  template: cygil/windows
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: ens41
+    address: 10.0.0.4/8
+    purpose: scenario
+    network: subnet_2
+    mininet_instance: Mininet-and-Onos-VM
+    connected_switch: s2
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  critical_reset: false
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+- id: 6-ADSERVER
+  hostname: 6-ADSERVER
+  os_family: windows
+  template: cygil/windows-server
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: ens42
+    address: 10.0.0.6/8
+    purpose: scenario
+    network: subnet_3
+    mininet_instance: Mininet-VM-Two
+    connected_switch: s3
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  critical_reset: false
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+- id: 12-WINDOWS
+  hostname: 12-WINDOWS
+  os_family: windows
+  template: cygil/windows
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: C:\Users\jpelrami\Documents\Virtual Machines\CyGIL2.0\12-WINDOWS\12-WINDOWS.vmx
+  interfaces:
+  - name: ens46
+    address: 10.0.0.12/8
+    purpose: scenario
+    network: subnet_4
+    mininet_instance: Mininet-VM-Two
+    connected_switch: s4
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  critical_reset: true
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+- id: 3-WINDOWS
+  hostname: 3-WINDOWS
+  os_family: windows
+  template: cygil/windows
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: ens38
+    address: 10.0.0.3/8
+    purpose: scenario
+    network: subnet_2
+    mininet_instance: Mininet-and-Onos-VM
+    connected_switch: s2
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  critical_reset: false
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+- id: 7-WINDOWS
+  hostname: 7-WINDOWS
+  os_family: windows
+  template: cygil/windows
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: ens41
+    address: 10.0.0.7/8
+    purpose: scenario
+    network: subnet_3
+    mininet_instance: Mininet-VM-Two
+    connected_switch: s3
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  critical_reset: false
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+- id: 8-WINDOWS
+  hostname: 8-WINDOWS
+  os_family: windows
+  template: cygil/windows
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: ens40
+    address: 10.0.0.8/8
+    purpose: scenario
+    network: subnet_3
+    mininet_instance: Mininet-VM-Two
+    connected_switch: s3
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  critical_reset: false
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+- id: 9-UBUNTU
+  hostname: 9-UBUNTU
+  os_family: linux
+  template: cygil/ubuntu
+  cpus: 2
+  memory_mb: 2048
+  vmx_path: null
+  interfaces:
+  - name: ens43
+    address: 10.0.0.9/8
+    purpose: scenario
+    network: subnet_4
+    mininet_instance: Mininet-VM-Two
+    connected_switch: s4
+    scope: local
+    mac: null
+    vmware_network: null
+    gateway: null
+    disable_dns: true
+    vmware_adapter_index: null
+  temporary_management:
+    enabled: true
+    vmware_network: VMnet0
+    address_mode: static
+    assigned_address: null
+    detach_before_snapshot: true
+  guest_access: null
+  hand:
+    enabled: false
+    agent_type: sandcat
+    group: red
+    c2_protocol: http
+    generated_command: null
+    generated_at: null
+  initial_red_hand: false
+  critical_reset: false
+  snapshot: true
+  target_file_path: null
+  target_file_worth: 100
+mininet_instances:
+- name: Mininet-and-Onos-VM
+  infrastructure_vm_id: Mininet-and-Onos-VM
+  onos_controller_id: Mininet-and-Onos-VM
+  external_ip: 192.168.10.5
+  internal_ip: 192.170.20.1
+  switch_links:
+    s1:
+    - s2
+    - s3
+    - s4
+- name: Mininet-VM-Two
+  infrastructure_vm_id: Mininet-VM-Two
+  onos_controller_id: Mininet-and-Onos-VM
+  external_ip: 192.168.10.6
+  internal_ip: 192.170.20.2
+  switch_links: {}
+onos_intents:
+- host_one: 2-WINDOWS
+  host_two: 6-ADSERVER
+- host_one: 12-WINDOWS
+  host_two: 6-ADSERVER
+- host_one: 12-WINDOWS
+  host_two: 2-WINDOWS
+- host_one: 1-UBUNTU
+  host_two: 6-ADSERVER
+- host_one: 3-WINDOWS
+  host_two: 6-ADSERVER
+- host_one: 4-WINDOWS
+  host_two: 6-ADSERVER
+- host_one: 7-WINDOWS
+  host_two: 6-ADSERVER
+- host_one: 8-WINDOWS
+  host_two: 6-ADSERVER
+- host_one: 9-UBUNTU
+  host_two: 6-ADSERVER
+- host_one: 12-WINDOWS
+  host_two: 3-WINDOWS
+command_center:
+  provider: caldera_three
+  abilities:
+  - action_id: 0
+    ability_id: 02dd38d7-8b92-45d4-99fe-155ce975abf4
+    description: ''
+  - action_id: 1
+    ability_id: 0e74338f-ebf6-4de8-a6d2-3a653f72d820
+    description: ''
+  - action_id: 2
+    ability_id: 6bcbd50f-3938-4442-b21f-fe444ad7fc3c
+    description: ''
+  - action_id: 3
+    ability_id: 9ece85f4-555f-4084-ac43-d563f648d668
+    description: ''
+  - action_id: 4
+    ability_id: ce086fe0-62df-48ac-afbf-3da9c084d654
+    description: ''
+  - action_id: 5
+    ability_id: f8c03033-2b3f-4f51-abfa-ea056e614427
+    description: ''
+  - action_id: 6
+    ability_id: f6540383-91f1-46ee-92ac-eddaddd2c5b0
+    description: ''
+  - action_id: 7
+    ability_id: 6285cd08-36e2-464c-be7b-b1e68d25ab07
+    description: ''
+  - action_id: 8
+    ability_id: 8d1b1440-16d1-4ba4-aa54-9af48129f4cf
+    description: ''
+  - action_id: 9
+    ability_id: cfb7c1a7-0ed8-4921-ab39-226feff6789c
+    description: ''
+  - action_id: 10
+    ability_id: 30858055-4f0a-4cec-9783-2d55424ebb57
+    description: ''
+  - action_id: 11
+    ability_id: 7f504b62-27d5-43d3-ad18-71570093a784
+    description: ''
+  - action_id: 12
+    ability_id: 17a5ce44-6f30-4cdd-a74a-f23534bb5a8b
+    description: ''
+  - action_id: 13
+    ability_id: 85341c8c-4ecb-4579-8f53-43e3e91d7617
+    description: ''
+  - action_id: 14
+    ability_id: fa4ed735-7006-4451-a578-b516f80e559f
+    description: ''
+  - action_id: 15
+    ability_id: f87b0c78-3158-4b84-9ffd-b7f4a8e8cbe5
+    description: ''
+  initial_facts: []
+  rules:
+  - trait: remote.host.ip
+    match: 127.0.0.1
+    action: DENY
+  - trait: remote.ssh.ip
+    match: 127.0.0.1
+    action: DENY
+  - trait: remote.host.ip
+    match: 224.*
+    action: DENY
+  - trait: remote.ssh.ip
+    match: 224.*
+    action: DENY
+  - trait: remote.host.ip
+    match: 232.*
+    action: DENY
+  - trait: remote.ssh.ip
+    match: 232.*
+    action: DENY
+  - trait: remote.host.ip
+    match: 233.*
+    action: DENY
+  - trait: remote.ssh.ip
+    match: 233.*
+    action: DENY
+  - trait: remote.host.ip
+    match: 234.*
+    action: DENY
+  - trait: remote.ssh.ip
+    match: 234.*
+    action: DENY
+  - trait: remote.host.ip
+    match: 239.*
+    action: DENY
+  - trait: remote.ssh.ip
+    match: 239.*
+    action: DENY
+reward:
+  action_cost: 1
+  no_action_dispatched_cost: 8
+  max_steps: 80
+  objectives:
+  - type: hand_on_host
+    enabled: true
+    worth: 100
+    host_name: 6-ADSERVER
+    privilege: User
+    trait: null
+    value: null
+    count: 1
+    operator: ==
+    file_path: null
+    source: manual
+  - type: hand_on_host
+    enabled: true
+    worth: 100
+    host_name: 6-ADSERVER
+    privilege: Elevated
+    trait: null
+    value: null
+    count: 1
+    operator: ==
+    file_path: null
+    source: manual
+  - type: file_exfiltration
+    enabled: false
+    worth: 100
+    host_name: 2-WINDOWS
+    privilege: null
+    trait: null
+    value: null
+    count: 1
+    operator: ==
+    file_path: C:\Users\Public\Documents\steal_me.txt
+    source: manual
+  - type: trait_value_pair
+    enabled: false
+    worth: 100
+    host_name: null
+    privilege: null
+    trait: host.file.path
+    value: C:\Users\Public\Documents\Secret_codes.txt
+    count: 1
+    operator: ==
+    file_path: null
+    source: manual
+observation:
+  profile_path: ../scenario_two/scenario_two_obs_config.yml
+cygil_runtime:
+  destination_directory: /opt/cygil/scenarios/scenario_two
+  launch_commands: []

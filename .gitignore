@@ -1,0 +1,52 @@
+# Environnements et dépendances locales
+.venv/
+.dependencies/
+
+# Caches, couverture et artefacts Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Secrets et fichiers propres à l'hôte
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+
+# États de travail et artefacts régénérables
+work/*
+!work/.gitkeep
+tmp/
+.test_tmp/
+deployments/
+.vagrant/
+*.log
+*.bak
+
+# Les générations courantes restent locales. Seuls les brouillons assainis du
+# démonstrateur nouveau_20, cités dans le rapport, sont conservés dans le dépôt.
+generated/*
+!generated/nouveau_20_command_center_config.yml
+!generated/nouveau_20_manifest.json
+!generated/nouveau_20_network_config.yml
+!generated/nouveau_20_obs_config.yml
+!generated/nouveau_20_reward_config.yml
+
+# Fichiers d'éditeur et du système
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Instructions locales des assistants de développement
+/AGENTS.md

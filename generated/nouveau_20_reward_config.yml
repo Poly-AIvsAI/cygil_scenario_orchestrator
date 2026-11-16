@@ -1,0 +1,10 @@
+action_cost: 1
+no_action_dispatched_cost: 8
+game_end_criteria:
+- type: max_steps
+  value: 80
+hand_on_host_worth: []
+trait_value_pair_worth: []
+trait_pairs_worth: []
+file_exfiltration_worth: []
+trait_worth: {}

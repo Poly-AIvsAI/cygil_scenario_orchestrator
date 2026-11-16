@@ -1,0 +1,12 @@
+provider_type: caldera_three
+provider_config:
+  caldera_three:
+    red_abilities: []
+    red_default_facts: []
+    red_default_rules: []
+  caldera_four:
+    red_abilities: []
+    red_default_facts: []
+    red_default_rules: []
+simulator:
+  red_abilities: []
