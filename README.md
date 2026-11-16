@@ -81,3 +81,6 @@ work/                données locales d'exécution, toujours ignorées
 ```
 
 Le parcours détaillé, les limites actuelles et les opérations restant à qualifier sont décrits dans [`Guide d'utilisation.md`](Guide%20d'utilisation.md). Le guide de lecture du code se trouve dans [`docs/GUIDE_DU_CODE.md`](docs/GUIDE_DU_CODE.md).
+
+# cygil_scenario_orchestrator
+Prototype pour générer des scénarios d'entrainement RL pour CyGIL
